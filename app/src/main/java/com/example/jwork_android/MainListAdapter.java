@@ -10,7 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
-
+/**Adapter untuk list pada MainActivity
+ * @Leonardus Kevin
+ * @version 27.06.2021
+ */
 public class MainListAdapter extends BaseExpandableListAdapter {
 
     private Context _context;

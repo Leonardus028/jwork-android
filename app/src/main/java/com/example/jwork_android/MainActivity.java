@@ -1,8 +1,12 @@
 package com.example.jwork_android;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,26 +20,73 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
+/**Activity main menu untuk aplikasi Jwork
+ * @Leonardus Kevin
+ * @version 27.06.2021
+ */
 public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Recruiter> listRecruiter = new ArrayList<>();
     private ArrayList<Job> jobIdList = new ArrayList<>();
     private HashMap<Recruiter, ArrayList<Job>> childMapping = new HashMap<>();
 
+
+
     ExpandableListAdapter listAdapter;
     ExpandableListView expListView;
 
+    private static int jobseekerId;
+    /**
+     * Method untuk meninisialisasi activity_main
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Button btnApply = findViewById(R.id.applyBtn);
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            jobseekerId  = extras.getInt("jobseekerId");
+        }
+
 
         expListView = (ExpandableListView) findViewById(R.id.lvExp);
 
         refreshList();
+
+        expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener(){
+            @Override
+            public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l) {
+                Intent intent = new Intent(MainActivity.this, ApplyJobActivity.class);
+                int jobId = childMapping.get(listRecruiter.get(i)).get(i1).getId();
+                String jobName = childMapping.get(listRecruiter.get(i)).get(i1).getName();
+                String jobCategory = childMapping.get(listRecruiter.get(i)).get(i1).getCategory();
+                int jobFee = childMapping.get(listRecruiter.get(i)).get(i1).getFee();
+
+                intent.putExtra("job_id", jobId);
+                intent.putExtra("job_name", jobName);
+                intent.putExtra("job_category", jobCategory);
+                intent.putExtra("job_fee", jobFee);
+                intent.putExtra("jobseekerId", jobseekerId);
+
+                startActivity(intent);
+                return true;
+            }
+        });
+
+        btnApply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SelesaiJobActivity.class);
+                intent.putExtra("jobseekerId", jobseekerId);
+                startActivity(intent);
+            }
+        });
     }
 
+    /**
+     * Method untuk mendapatkan jsonObject Job
+     */
     protected void refreshList(){
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
@@ -83,8 +134,8 @@ public class MainActivity extends AppCompatActivity {
                             for (Recruiter rec : listRecruiter) {
                                 ArrayList<Job> temp = new ArrayList<>();
                                 for (Job job2 : jobIdList) {
-                                    if (job2.getRecruiter().getName().equals(rec.getName()) || 
-                                            job2.getRecruiter().getEmail().equals(rec.getEmail()) || 
+                                    if (job2.getRecruiter().getName().equals(rec.getName()) ||
+                                            job2.getRecruiter().getEmail().equals(rec.getEmail()) ||
                                             job2.getRecruiter().getPhoneNumber().equals(rec.getPhoneNumber())) {
                                         temp.add(job2);
                                     }
@@ -104,4 +155,8 @@ public class MainActivity extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
         queue.add(menuRequest);
     }
+
+
+
+
 }

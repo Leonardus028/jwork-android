@@ -16,9 +16,14 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
+/**Activity untuk Login sebagai Jobseeker
+ * @Leonardus Kevin
+ * @version 27.06.2021
+ */
 public class LoginActivity extends AppCompatActivity {
-
+    /**
+     * Method untuk meninisialisasi activity_login
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +48,8 @@ public class LoginActivity extends AppCompatActivity {
                             if (jsonObject != null) {
                                 Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                intent.putExtra("jobseekerId", jsonObject.getInt("id"));
+                                intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
                             }
                         } catch (JSONException e) {
