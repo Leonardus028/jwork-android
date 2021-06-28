@@ -17,7 +17,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 /**Activity untuk Login sebagai Jobseeker
- * @Leonardus Kevin
+ * @author Leonardus Kevin
  * @version 27.06.2021
  */
 public class LoginActivity extends AppCompatActivity {

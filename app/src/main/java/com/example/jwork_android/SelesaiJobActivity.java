@@ -26,7 +26,7 @@ import java.util.Date;
 import java.util.Locale;
 
 /**Activity untuk menampilkan Job yang diapply
- * @Leonardus Kevin
+ * @author Leonardus Kevin
  * @version 27.06.2021
  */
 public class SelesaiJobActivity extends AppCompatActivity {

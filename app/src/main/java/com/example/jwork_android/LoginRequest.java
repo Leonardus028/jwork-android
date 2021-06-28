@@ -8,7 +8,7 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 /**Request untuk Login, dimana request dipanggil dalam LoginActivity
- * @Leonardus Kevin
+ * @author Leonardus Kevin
  * @version 27.06.2021
  */
 public class LoginRequest extends StringRequest {

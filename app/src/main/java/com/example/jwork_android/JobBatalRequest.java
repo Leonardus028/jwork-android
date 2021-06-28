@@ -7,7 +7,7 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 /**Request untuk membatalkan pengambilan Job, dimana request dipanggil dalam ApplyJobActivity
- * @Leonardus Kevin
+ * @author Leonardus Kevin
  * @version 27.06.2021
  */
 public class JobBatalRequest extends StringRequest {

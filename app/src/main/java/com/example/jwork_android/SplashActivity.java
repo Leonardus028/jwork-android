@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 /**Activity untuk menampilkan Splash Screen
- * @Leonardus Kevin
+ * @author Leonardus Kevin
  * @version 27.06.2021
  */
 public class SplashActivity extends AppCompatActivity {

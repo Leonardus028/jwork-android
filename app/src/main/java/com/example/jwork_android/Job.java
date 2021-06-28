@@ -1,6 +1,6 @@
 package com.example.jwork_android;
 /**Class Job untuk membuat objek Job dan memodifikasi nilai dalam objek Job
- * @Leonardus Kevin
+ * @author Leonardus Kevin
  * @version 27.06.2021
  */
 public class Job {

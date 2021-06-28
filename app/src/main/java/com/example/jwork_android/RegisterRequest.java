@@ -7,7 +7,7 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 /**Request untuk Register, dimana request dipanggil dalam LoginActivity
- * @Leonardus Kevin
+ * @author Leonardus Kevin
  * @version 27.06.2021
  */
 public class RegisterRequest extends StringRequest {
